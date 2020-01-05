@@ -1,0 +1,5 @@
+export const handelSearch=(textSearch)=>({type:"SEARCH_TEXT",payload:textSearch})
+export const handleadd=(obj)=>({type:"ADD_FILM",payload:obj})
+export const editMovie=(obj)=>({type:"EDIT",payload:obj})
+export const handelDelete=(id)=>({type:"DELETE",payload:id})
+export const handledRate=(valRate)=>({type:"SEARCH_RATE",payload:valRate})

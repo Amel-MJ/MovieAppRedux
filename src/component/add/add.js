@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { Modal, Button, Input, Rate } from "antd";
+import { handleadd } from "../../action/index";
 
 const desc = ["1 étoile", "2 étoiles", "3 étoiles", "4 étoiles", "5 étoiles"];
 
@@ -8,7 +9,7 @@ class add extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { lien: "", name: "", rate:"", visible: false, value: 0 };
+    this.state = { lien: "", name: "", rate: "", visible: false, value: 0 };
   }
   showModal = () => {
     this.setState({
@@ -17,18 +18,15 @@ class add extends Component {
   };
 
   handleOk = e => {
- 
-    this.setState({ visible: false}, () => {
+    this.setState({ visible: false }, () => {
       this.props.handleadd({
-          rate: (this.state.rate).toString(),
-          lien: this.state.lien,
-          name: this.state.name
+        rate: this.state.rate.toString(),
+        lien: this.state.lien,
+        name: this.state.name
       });
 
-      this.setState({ lien: "", name: "", rate:"" })
-
+      this.setState({ lien: "", name: "", rate: "" });
     });
-
   };
 
   handleChange = value => {
@@ -49,7 +47,6 @@ class add extends Component {
   };
 
   render() {
-    
     return (
       <div>
         <Button type="primary" onClick={this.showModal} style={{ margin: 90 }}>
@@ -89,9 +86,5 @@ class add extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return{
-    handleadd:(obj)=>dispatch({type:"ADD_FILM",payload:obj})
-  }
-}
-export default connect(null,mapDispatchToProps)(add);
+const mapDispatchToProps = { handleadd };
+export default connect(null, mapDispatchToProps)(add);

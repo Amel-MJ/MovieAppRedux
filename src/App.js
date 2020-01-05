@@ -1,14 +1,10 @@
 import React from "react";
+import Loading from "./component/Loading";
+import Routeur from "./routeur/index"
 import "./App.css";
 
-import Search from "./component/search/search";
-import MapFilm from "./component/map/mapFilm";
-import Add from "./component/add/add";
-import Rate from "./component/rate/rate";
-import Loading from "./component/Loading";
-
 class App extends React.Component {
-  state = { };
+  state = {};
 
   componentDidMount() {
     setTimeout(() => {
@@ -18,15 +14,9 @@ class App extends React.Component {
 
   render() {
     return !this.state.isLoading ? (<Loading /> ) : (
-      <div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Search />
-          <Rate />
-        </div>
-
-        <MapFilm />
-        <Add />
-      </div>
+    <div>
+      <Routeur/>
+    </div>
     );
   }
 }

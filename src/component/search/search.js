@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { Input } from "antd";
+import { handelSearch } from "../../action/index";
 
 import "./serch.css";
 
 const { Search } = Input;
 
 class search extends Component {
-
-handledSearch=(e)=>{
-  this.props.handelSearch(e.target.value)
-}
+  handledSearch = e => {
+    this.props.handelSearch(e.target.value);
+  };
 
   render() {
     return (
@@ -26,9 +26,5 @@ handledSearch=(e)=>{
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handelSearch:(textSearch)=>dispatch({type:"SEARCH_TEXT",payload:textSearch}),
-  }
-};
-export default connect(null,mapDispatchToProps)(search);
+const mapDispatchToProps = { handelSearch };
+export default connect(null, mapDispatchToProps)(search);

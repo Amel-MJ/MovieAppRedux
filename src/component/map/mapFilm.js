@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Rate } from "antd";
+import { Card, Rate, Button } from "antd";
+import Delete from "../delEdit/delete";
+import Edit from "../delEdit/edit";
+import "./buttonCard.css";
 
 const { Meta } = Card;
 function MapFilm(props) {
@@ -11,20 +14,17 @@ function MapFilm(props) {
         el.name.toLowerCase().includes(props.newInput.toLowerCase())
       );
     } else if (props.stars !== "") {
-      return el.rate.includes(props.stars)
+      return el.rate.includes(props.stars);
     } else if (props.newInput !== "") {
       return el.name.toLowerCase().includes(props.newInput.toLowerCase());
     } else {
+      return props.stars !== ""
+        ? el.rate.includes(props.stars)
+        : el.name.toLowerCase().includes(props.newInput.toLowerCase());
     }
-
-    return props.stars !== ""
-      ? el.rate.includes(props.stars)
-      : el.name.toLowerCase().includes(props.newInput.toLowerCase());
   };
 
   const arrByID = props.movieList.filter(filtrerParID);
-
-  console.log("Tableau filtré\n", arrByID);
 
   ////////////////////////////////
   return (
@@ -48,12 +48,22 @@ function MapFilm(props) {
           <span>
             <Rate value={el.rate} />
           </span>
+          <br />
+          <div className="buttonCard">
+            <Delete id={i} />
+
+            <Edit id={i} />
+          </div>
         </Card>
       ))}
     </div>
   );
 }
 const mapStateToProps = state => {
-  return { movieList: state.movieList, stars: state.stars, newInput:state.newInput };
+  return {
+    movieList: state.movieList,
+    stars: state.stars,
+    newInput: state.newInput
+  };
 };
 export default connect(mapStateToProps, null)(MapFilm);
