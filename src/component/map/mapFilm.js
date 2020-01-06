@@ -53,7 +53,7 @@ function MapFilm(props) {
           <div className="buttonCard">
             <Delete id={i} />
 
-            <Edit newId={el.id} />
+            <Edit editFilm={el} />
             <Link to={`/Desc/${i}`} id={i}>  <Button >Description</Button></Link>
           
           </div>

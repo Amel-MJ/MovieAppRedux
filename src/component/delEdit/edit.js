@@ -14,19 +14,19 @@ class Edit extends Component {
           lien: "",
           name: "",
           rate:"",
-          movie: this.props.movieList.filter(movie => movie.id == this.props.newId)
+         
 
         };
       }
 
       showModif = () => {
-        console.log(this.state.movie[0]);
+    
         this.setState({
           visible: !this.state.visible,
-          id: this.state.movie[0].id,
-          lien: this.state.movie[0].lien,
-          name: this.state.movie[0].name,
-          rate: this.state.movie[0].rate
+          id: this.props.editFilm.id,
+          lien: this.props.editFilm.lien,
+          name: this.props.editFilm.name,
+          rate: this.props.editFilm.rate
         });
       };
 
@@ -44,8 +44,10 @@ class Edit extends Component {
 
     handleSubmit=()=>{
         this.props.editMovie(this.state);
+        this.setState({
+          visible: !this.state.visible})
     }
-  handleSendEdit = () => {};
+
   render() {
     return (
       <div>
@@ -64,15 +66,13 @@ class Edit extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { movieList: state.movieList };
-};
+
 
 const mapDispatchToProps = dispatch => {
     return{
-        editMovie:(obj) => dispatch({ type: "EDIT", payload: obj }) 
+        editMovie:(obj) => dispatch({ type: "EDIT", payload: obj}) 
         
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Edit);
+export default connect(null, mapDispatchToProps)(Edit);
