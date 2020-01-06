@@ -10,20 +10,10 @@ export default class index extends Component {
     return (
       <div>
         <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">home</Link>
-              </li>
-              <li>
-                <Link to="/desc">ce ci est ma description</Link>
-              </li>
-            </ul>
-          </nav>
 
           <Switch>
-            <Route component={Description} path="/desc" />
-            <Route component={Home} path="/" />
+            <Route  path="/Desc/:id" component={Description} />
+            <Route  path="/" component={Home}/>
           </Switch>
         </Router>
       </div>

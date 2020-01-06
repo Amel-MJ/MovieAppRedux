@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Rate, Button } from "antd";
+import { Card, Rate, Button} from "antd";
 import Delete from "../delEdit/delete";
 import Edit from "../delEdit/edit";
 import "./buttonCard.css";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 function MapFilm(props) {
@@ -52,7 +53,9 @@ function MapFilm(props) {
           <div className="buttonCard">
             <Delete id={i} />
 
-            <Edit id={i} />
+            <Edit newId={el.id} />
+            <Link to={`/Desc/${i}`} id={i}>  <Button >Description</Button></Link>
+          
           </div>
         </Card>
       ))}
